@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>wxid转换二维码添加微信好友</title>
+</head>
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+	}
+
+	.container {
+		width: 100%;
+		position: relative;
+		margin-top: 30px;
+	}
+
+	#qrcode {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 300px;
+		height: 300px;
+		display: inline-block;
+	}
+
+	#qrcode img {
+		width: 100%;
+	}
+
+	.wow {
+		font-size: 20px;
+		position: absolute;
+		top: 320px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	#input {
+		line-height: 20px;
+		width: 200px;
+		height: 20px;
+		border: 1px solid black;
+	}
+
+	.sub {
+		width: 50px;
+		height: 24px;
+	}
+</style>
+
+<body>
+
+	<div class="container">
+		<div id="qrcode"></div>
+		<div class="wow">
+
+			<span>wxid:</span>
+			<input type="text" id="input">
+			<input class="sub" type="submit" value="Submit" onclick="change()">
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/qrcode.min.js"></script>
+	<script>
+		function change() {
+			var getid = $('#input').val() //获取wxid
+			var src = "weixin://contacts/profile/" + getid; //拼接
+			// // 生成二维码链接
+			$("#qrcode").html(''); //将之前生成的二维码清空
+			new QRCode(document.getElementById("qrcode"), src);
+		}
+	
+	</script>
+</body>
+
+</html>
